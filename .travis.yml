@@ -1,0 +1,15 @@
+language: java
+jdk: oraclejdk8
+
+#env:
+#  global:
+#   - secure: ""
+
+addons:
+  sonarcloud:
+    organization: "myprofile"
+    token:
+      secure: $SONAR_TOKEN
+
+script:
+  - mvn clean install
