@@ -1,6 +1,26 @@
 # Compiled class file
 *.class
 
+#Directory and files
+target/
+/target/
+.mvn/
+mvnw
+mvnw.cmd
+.settings/
+.project
+.classpath
+
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
 # Log file
 *.log
 
