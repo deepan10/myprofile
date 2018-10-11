@@ -1,8 +1,11 @@
 language: java
 jdk: oraclejdk8
 
-#env:
-#  global:
+env:
+  global:
+  - DOCKER_REGISTRY="docker.io/deepan10"
+  - IMAGE_NAME="deepan10/profile"
+  - COMMIT_ID=${TRAVIS_COMMIT}
 #   - secure: ""
 
 addons:
@@ -14,5 +17,11 @@ addons:
 script:
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
 
+after_success:
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
+- docker build -t profile-app .
+- docker tag profile-app $IMAGE_NAME:$COMMIT_ID
+- docker push $IMAGE_NAME:$COMMIT_ID
+
 notifications:
-  slack: deepan10:nTGqbkpHVVQ159ViRSnpQIjv
+  slack: deepan10:nTGqbkpHVVQ159ViRSnpQIjv  
