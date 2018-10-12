@@ -1,3 +1,6 @@
+os:
+  - linux
+  
 language: java
 jdk: oraclejdk8
 
@@ -19,7 +22,7 @@ addons:
       secure: $SONAR_TOKEN
 
 install:
-  - sudo wget https://mirror.openshift.com/pub/openshift-v3/clients/3.11.16/linux/oc.tar.gz
+  - sudo wget https://mirror.openshift.com/pub/openshift-v3/clients/3.10.1/linux/oc.tar.gz
   - sudo tar -xvf oc.tar.gz -C /usr/bin/
 
 script:
@@ -30,6 +33,9 @@ after_success:
 - docker build -t profile-app .
 - docker tag profile-app $IMAGE_NAME:$COMMIT_ID
 - docker push $IMAGE_NAME:$COMMIT_ID
+
+before_deploy:
+  - oc version
 
 deploy:
   - provider: script
