@@ -19,8 +19,8 @@ addons:
       secure: $SONAR_TOKEN
 
 install:
-  - wget https://mirror.openshift.com/pub/openshift-v3/clients/3.11.16/linux/oc.tar.gz
-  - tar -xvf oc.tar.gz -C /usr/bin/
+  - sudo wget https://mirror.openshift.com/pub/openshift-v3/clients/3.11.16/linux/oc.tar.gz
+  - sudo tar -xvf oc.tar.gz -C /usr/bin/
 
 script:
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
