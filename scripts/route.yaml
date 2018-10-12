@@ -1,0 +1,13 @@
+kind: "Route"
+apiVersion: "v1"
+metadata:
+  name: "myprofile"
+  labels:
+     component: "myprofile"
+spec:
+   #host: "deepankumar-profile.openshiftapps.com"
+   to:
+     kind: "Service"
+     name: "myprofile"
+   port:
+     targetPort: "http"

@@ -1,0 +1,38 @@
+kind: "DeploymentConfig"
+apiVersion: "v1"
+metadata:
+  name: "myprofile"
+spec:
+  template:
+    metadata:
+      labels:
+        name: "myprofile"
+      annotations:
+        app_version: 'latest'
+    spec:
+      containers:
+        - name: "myprofile"
+          image: "deepan10/profile:b684a7a90f066fb492f058769da97d3ba7461e6c"
+          ports:
+            - containerPort: 9090
+              protocol: "TCP"
+          env:
+            - name: "APP_NAME"
+              value: "myprofile"
+          readinessProbe:
+            httpGet:
+              path: "/"
+              port: 9090
+            initialDelaySeconds: 15
+            timeoutSeconds: 1 
+  replicas: 1
+  selector:
+    name: "myprofile"
+  triggers:
+    - type: "ConfigChange"
+  strategy:
+    type: "Rolling"
+    rollingParams:
+      updatePeriodSeconds: 1
+      intervalSeconds: 1
+      timeoutSeconds: 120

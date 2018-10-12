@@ -1,0 +1,12 @@
+kind: "Service"
+apiVersion: "v1"
+metadata:
+  name: "myprofile"
+spec:
+  ports:
+    - name: "http"
+      protocol: "TCP"
+      port: 9090
+  selector:
+    name: "myprofile"
+  type: "ClusterIP"
