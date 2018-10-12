@@ -27,6 +27,7 @@ then
                 URL=`oc get route | grep -i profile | awk '{print $2}'`
                 #myprofile-demo-profile.7e14.starter-us-west-2.openshiftapps.com
                 #Check the URL HTTP status post deployment
+                sleep 60
                 check_status=$(curl -s -o /dev/null -w "%{http_code}" $URL)
                 if [ $check_status -eq 200 ];
                 then
