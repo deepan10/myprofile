@@ -7,19 +7,19 @@ if [ $? -eq 0 ];
 then
     echo "GO-Live Started"
     #Create Deploymend with single pod
-    oc create -f deploy.yaml
+    oc create -f scripts/deploy.yaml
     sleep 20 
     if check_pod=$(oc get pods | grep -i profile | grep -i Running);
     then
         echo "Pod Deploy Successfull"
         #Create service for the deployment
-        oc create -f service.yaml
+        oc create -f scripts/service.yaml
         sleep 15
         if check_svc=$(oc get svc);
         then 
             echo "Service Deploy Successfull"
             #Create route for the service
-            oc create -f route.yaml
+            oc create -f scripts/route.yaml
             sleep 10
             if check_route=$(oc get route | grep -i profile);
             then
