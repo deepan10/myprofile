@@ -1,0 +1,15 @@
+.git
+.classpath
+.project
+.gitignore
+
+*.md
+*.yaml
+*.yml
+*.xml
+
+Dockerfile
+Jenkinsfile
+
+src
+scripts
